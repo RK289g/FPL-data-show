@@ -1,0 +1,80 @@
+.home-container {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.league-table {
+  width: 40%;
+}
+
+.league-title {
+  text-align: center;
+  color: #5a5f65;
+  margin-bottom: 20px;
+}
+
+.player-card {
+  width: 200px;
+  height: 210px;
+  margin-top: 50px;
+  padding: 5px;
+  background-color: #ced4da;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #4a90e2;
+}
+
+.player-name {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.player-entry-name {
+  color: #888;
+}
+
+.player-gw-points {
+  font-size: 1.2em;
+  color: #4caf50;
+}
+
+/* Reduce row height by adjusting padding */
+.ant-table-tbody > tr > td {
+  padding: 4px 16px !important;
+}
+
+/* Alternate row colors */
+.table-row-even {
+  background-color: #f3cdcd !important;
+}
+
+.table-row-odd {
+  background-color: #9acbf2 !important;
+}
+
+.ant-table-thead > tr > th {
+  padding: 4px 16px !important;
+  background-color: #888 !important;
+}
+
+.ant-table-tbody > tr:hover {
+  background-color: none !important;
+}
+
+.league-stats-container {
+  width: 40%;
+}
