@@ -135,16 +135,16 @@ const Home: React.FC = () => {
       </div>
 
       <Row>
-        <Col span={8}>
+        <Col span={6}>
           <LeagueTrends players={players} />
         </Col>
-        <Col span={8}>
+        <Col span={6}>
           <PlayerOfTheWeek player={highestScorer} />
         </Col>
-        <Col span={8}>
+        <Col span={6}>
           <HighestLeap players={players} />
         </Col>
-        <Col span={8}>
+        <Col span={6}>
           <BiggestDrop players={players} />
         </Col>
       </Row>
