@@ -8,6 +8,8 @@ import PlayerOfTheWeek from "./home-components/player-of-the-week/PlayerOfTheWee
 import HighestLeap from "./home-components/highest-leap/HighestLeap";
 import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
 
+// comment added
+
 interface Player {
   id: number;
   event_total: number;
