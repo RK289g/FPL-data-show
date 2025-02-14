@@ -1,7 +1,7 @@
 import { Flex, Image, Layout, Menu, MenuProps } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { Link, Outlet } from "react-router-dom";
-import logo from "../../../public/logo.png";
+import logo from "../../assets/logo.png";
 
 type MenuItem = Required<MenuProps>["items"][number];
 const LayoutWrapper = () => {

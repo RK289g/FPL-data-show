@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Button, Col, Row, Table } from "antd";
+import { Button, Col, Row, Table, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import LeagueTrends from "./home-components/league-trends/LeagueTrends";
-import PlayerOfTheWeek from "./home-components/player-of-the-week/PlayerOfTheWeek";
-import HighestLeap from "./home-components/highest-leap/HighestLeap";
-import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
+// import PlayerOfTheWeek from "./home-components/player-of-the-week/PlayerOfTheWeek";
+// import HighestLeap from "./home-components/highest-leap/HighestLeap";
+// import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
 
-// comment added
-
-interface Player {
-  id: number;
+export interface Player {
+  id: string;
   event_total: number;
   player_name: string;
   rank: number;
@@ -20,7 +18,7 @@ interface Player {
   total: number;
   entry: number;
   entry_name: string;
-  captain: string; // Assuming this exists in the API response
+  captain: string;
   photo?: string;
 }
 
@@ -35,38 +33,35 @@ interface StandingsResponse {
 
 const Home: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [leagueTitle, setLeagueTitle] = useState<string>("");
+  const [inputLeagueId, setInputLeagueId] = useState<string>("");
 
   const navigate = useNavigate();
 
   const fetchLeagueData = async () => {
+    if (!inputLeagueId) return;
+    setLoading(true);
     try {
       const response = await axios.get<StandingsResponse>(
-        "http://localhost:3000/league"
+        `http://localhost:3000/league/${inputLeagueId}`
       );
       setPlayers(response.data.standings.results);
       setLeagueTitle(response.data.league.name);
     } catch (error) {
       console.error("Error fetching the data:", error);
+      setPlayers([]);
+      setLeagueTitle("League not found");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchLeagueData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const highestScorer = players.reduce(
-    (prev, current) =>
-      prev.event_total > current.event_total ? prev : current,
-    players[0]
-  );
+  // const highestScorer = players.reduce(
+  //   (prev, current) =>
+  //     prev.event_total > current.event_total ? prev : current,
+  //   players[0]
+  // );
 
   const columns = [
     {
@@ -115,41 +110,55 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-container">
-      <div className="league-table">
-        <h1 className="league-title">{leagueTitle}</h1>
-        <Table
-          dataSource={players.slice(0, 5)}
-          columns={columns}
-          pagination={false}
-          rowKey="id"
-          rowClassName={(_, index) =>
-            index % 2 === 0 ? "table-row-even" : "table-row-odd"
-          }
+      <div className="search-box">
+        <Input
+          type="text"
+          title="Search by League ID"
+          placeholder="Enter League ID"
+          value={inputLeagueId}
+          onChange={(e) => setInputLeagueId(e.target.value)}
+          className="league-id-input"
         />
-
         <Button
           type="primary"
-          className="see-full-table-btn"
-          onClick={() => navigate("/leaderboard", { state: { players } })}
+          onClick={fetchLeagueData}
+          disabled={!inputLeagueId}
         >
-          See Full Table
+          Fetch League
         </Button>
       </div>
 
-      <Row>
-        <Col span={6}>
-          <LeagueTrends players={players} />
-        </Col>
-        <Col span={6}>
-          <PlayerOfTheWeek player={highestScorer} />
-        </Col>
-        <Col span={6}>
-          <HighestLeap players={players} />
-        </Col>
-        <Col span={6}>
-          <BiggestDrop players={players} />
-        </Col>
-      </Row>
+      {inputLeagueId && !loading && (
+        <div className="home-content">
+          <div className="league-table">
+            <h1 className="league-title">{leagueTitle}</h1>
+            <Table
+              dataSource={players.slice(0, 5)}
+              columns={columns}
+              pagination={false}
+              rowKey="id"
+              rowClassName={(_, index) =>
+                index % 2 === 0 ? "table-row-even" : "table-row-odd"
+              }
+            />
+
+            <Button
+              type="primary"
+              className="see-full-table-btn"
+              onClick={() => navigate("/leaderboard", { state: { players } })}
+              disabled={players.length === 0}
+            >
+              See Full Table
+            </Button>
+          </div>
+
+          <Row>
+            <Col span={6}>
+              <LeagueTrends players={players} />
+            </Col>
+          </Row>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Player {
-  id: number;
+  id: string;
   player_name: string;
   entry_name: string;
   rank: number;
