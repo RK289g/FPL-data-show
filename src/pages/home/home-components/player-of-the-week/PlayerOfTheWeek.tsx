@@ -1,20 +1,24 @@
-// import avatar from "../../../../assets/avatar.png";
-// import { Player } from "../../Home";
+import avatar from "../../../../assets/avatar.png";
+import { Player } from "../../Home";
 
-// interface PlayerOfTheWeekProps {
-//   player: Player;
-// }
+interface PlayerOfTheWeekProps {
+  player?: Player; // Make it optional to avoid undefined errors
+}
 
-const PlayerOfTheWeek = () => {
+const PlayerOfTheWeek = ({ player }: PlayerOfTheWeekProps) => {
+  if (!player) {
+    return <div className="player-card">No player data available</div>;
+  }
+
   return (
     <div className="player-card">
       <h2>Player of the Week</h2>
-      {/* <div className="player-details">
+      <div className="player-details">
         <img src={avatar} alt="player" className="player-avatar" />
         <strong className="player-name">{player.event_total}</strong>
         <span className="player-entry-name">{player.entry_name}</span>
         <div className="player-gw-points">GW Points: {player.event_total}</div>
-      </div> */}
+      </div>
     </div>
   );
 };
