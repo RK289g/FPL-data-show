@@ -135,7 +135,7 @@ const Home: React.FC = () => {
       {inputLeagueId && !loading && (
         <div className="home-content">
           <Row>
-            <Col span={8}>
+            <Col span={12}>
               <div className="league-table">
                 <h1 className="league-title">{leagueTitle}</h1>
                 <Table

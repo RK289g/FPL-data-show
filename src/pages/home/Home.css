@@ -1,9 +1,6 @@
 .home-container {
-  display: flex;
-  /* justify-content: space-between; */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
+  padding: 0 80px;
 }
 
 .search-box {
@@ -26,7 +23,7 @@
   display: flex;
   gap: 50px;
   width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .league-table {
