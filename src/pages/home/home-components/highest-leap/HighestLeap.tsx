@@ -1,18 +1,15 @@
 import React from "react";
-
-interface Player {
-  id: string;
-  player_name: string;
-  entry_name: string;
-  rank: number;
-  last_rank: number;
-}
+import { Player } from "../../Home";
 
 interface HighestLeapProps {
-  players: Player[];
+  players?: Player[];
 }
 
-const HighestLeap: React.FC<HighestLeapProps> = ({ players }) => {
+const HighestLeap: React.FC<HighestLeapProps> = ({ players = [] }) => {
+  if (players.length === 0) {
+    return <div className="player-card">No player data available</div>;
+  }
+
   const highestLeap = players.reduce(
     (prev, current) =>
       current.last_rank - current.rank > prev.last_rank - prev.rank

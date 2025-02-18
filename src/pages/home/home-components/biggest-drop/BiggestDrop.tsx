@@ -1,18 +1,24 @@
 import React from "react";
-
-interface Player {
-  id: string;
-  player_name: string;
-  entry_name: string;
-  rank: number;
-  last_rank: number;
-}
+import { Player } from "../../Home";
 
 interface BiggestDropProps {
-  players: Player[];
+  players?: Player[];
 }
 
-const BiggestDrop: React.FC<BiggestDropProps> = ({ players }) => {
+const BiggestDrop: React.FC<BiggestDropProps> = ({ players = [] }) => {
+  if (!players) {
+    return <div className="player-card">No player data available</div>;
+  }
+
+  if (players.length === 0) {
+    return (
+      <div className="highlight-card player-card">
+        <h2>Biggest Drop</h2>
+        <p>No data available.</p>
+      </div>
+    );
+  }
+
   const biggestDrop = players.reduce(
     (prev, current) =>
       current.rank - current.last_rank > prev.rank - prev.last_rank

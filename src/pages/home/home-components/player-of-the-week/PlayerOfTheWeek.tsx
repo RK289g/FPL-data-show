@@ -2,7 +2,7 @@ import avatar from "../../../../assets/avatar.png";
 import { Player } from "../../Home";
 
 interface PlayerOfTheWeekProps {
-  player?: Player; // Make it optional to avoid undefined errors
+  player?: Player;
 }
 
 const PlayerOfTheWeek = ({ player }: PlayerOfTheWeekProps) => {

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import LeagueTrends from "./home-components/league-trends/LeagueTrends";
 import PlayerOfTheWeek from "./home-components/player-of-the-week/PlayerOfTheWeek";
-// import HighestLeap from "./home-components/highest-leap/HighestLeap";
-// import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
+import HighestLeap from "./home-components/highest-leap/HighestLeap";
+import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
 
 export interface Player {
   id: string;
@@ -110,7 +110,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-container">
-      <Row>
+      <Row gutter={16}>
         <Col>
           <div className="search-box">
             <Input
@@ -135,7 +135,7 @@ const Home: React.FC = () => {
       {inputLeagueId && !loading && (
         <div className="home-content">
           <Row>
-            <Col span={12}>
+            <Col span={8}>
               <div className="league-table">
                 <h1 className="league-title">{leagueTitle}</h1>
                 <Table
@@ -161,11 +161,17 @@ const Home: React.FC = () => {
               </div>
             </Col>
 
-            <Col span={6}>
+            <Col span={3}>
               <LeagueTrends players={players} />
             </Col>
-            <Col span={6}>
+            <Col span={3}>
               <PlayerOfTheWeek player={highestScorer} />
+            </Col>
+            <Col span={3}>
+              <HighestLeap players={players} />
+            </Col>
+            <Col span={3}>
+              <BiggestDrop players={players} />
             </Col>
           </Row>
         </div>

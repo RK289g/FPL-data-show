@@ -1,6 +1,7 @@
 .home-container {
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 40px;
+  max-width: 1440px;
 }
 
 .search-box {
@@ -23,11 +24,6 @@
   display: flex;
   gap: 50px;
   width: 100%;
-  /* margin: 0 auto; */
-}
-
-.league-table {
-  width: 40%;
 }
 
 .league-title {
@@ -75,12 +71,10 @@
   color: #4caf50;
 }
 
-/* Reduce row height by adjusting padding */
-.ant-table-tbody > tr > td {
+/* .ant-table-tbody > tr > td {
   padding: 4px 16px !important;
 }
 
-/* Alternate row colors */
 .table-row-even {
   background-color: #f3cdcd !important;
 }
@@ -100,4 +94,4 @@
 
 .league-stats-container {
   width: 40%;
-}
+} */
