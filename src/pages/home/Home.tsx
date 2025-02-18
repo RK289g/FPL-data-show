@@ -134,12 +134,12 @@ const Home: React.FC = () => {
 
       {inputLeagueId && !loading && (
         <div className="home-content">
-          <Row>
-            <Col span={8}>
+          <Row gutter={16}>
+            <Col span={12}>
               <div className="league-table">
                 <h1 className="league-title">{leagueTitle}</h1>
                 <Table
-                  dataSource={players.slice(0, 5)}
+                  dataSource={players.slice(0, 10)}
                   columns={columns}
                   pagination={false}
                   rowKey="id"
@@ -161,17 +161,21 @@ const Home: React.FC = () => {
               </div>
             </Col>
 
-            <Col span={3}>
-              <LeagueTrends players={players} />
-            </Col>
-            <Col span={3}>
-              <PlayerOfTheWeek player={highestScorer} />
-            </Col>
-            <Col span={3}>
-              <HighestLeap players={players} />
-            </Col>
-            <Col span={3}>
-              <BiggestDrop players={players} />
+            <Col span={12}>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <LeagueTrends players={players} />
+                </Col>
+                <Col span={12}>
+                  <PlayerOfTheWeek player={highestScorer} />
+                </Col>
+                <Col span={12}>
+                  <HighestLeap players={players} />
+                </Col>
+                <Col span={12}>
+                  <BiggestDrop players={players} />
+                </Col>
+              </Row>
             </Col>
           </Row>
         </div>
