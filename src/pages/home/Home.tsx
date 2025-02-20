@@ -124,6 +124,7 @@ const Home: React.FC = () => {
             <Button
               type="primary"
               onClick={fetchLeagueData}
+onchange={fetchLeagueData}
               disabled={!inputLeagueId}
             >
               Fetch League
