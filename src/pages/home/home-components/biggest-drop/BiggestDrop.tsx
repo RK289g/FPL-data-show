@@ -1,11 +1,10 @@
-import React from "react";
 import { Player } from "../../Home";
 
 interface BiggestDropProps {
   players?: Player[];
 }
 
-const BiggestDrop: React.FC<BiggestDropProps> = ({ players = [] }) => {
+const BiggestDrop = ({ players = [] }: BiggestDropProps) => {
   if (!players) {
     return <div className="player-card">No player data available</div>;
   }

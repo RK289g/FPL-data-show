@@ -7,6 +7,7 @@ import LeagueTrends from "./home-components/league-trends/LeagueTrends";
 import PlayerOfTheWeek from "./home-components/player-of-the-week/PlayerOfTheWeek";
 import HighestLeap from "./home-components/highest-leap/HighestLeap";
 import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
+import FPLBarChart from "./home-components/bar-chart/BarChart";
 
 export interface Player {
   id: string;
@@ -134,7 +135,7 @@ const Home: React.FC = () => {
 
       {inputLeagueId && !loading && (
         <div className="home-content">
-          <Row gutter={16}>
+          <Row gutter={40}>
             <Col span={12}>
               <div className="league-table">
                 <h1 className="league-title">{leagueTitle}</h1>
@@ -163,16 +164,19 @@ const Home: React.FC = () => {
 
             <Col span={12}>
               <Row gutter={16}>
-                <Col span={12}>
+                <Col span={24}>
+                  <FPLBarChart players={players} />
+                </Col>
+                <Col span={8}>
                   <LeagueTrends players={players} />
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <PlayerOfTheWeek player={highestScorer} />
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <HighestLeap players={players} />
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <BiggestDrop players={players} />
                 </Col>
               </Row>

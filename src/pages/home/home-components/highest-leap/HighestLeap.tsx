@@ -1,11 +1,10 @@
-import React from "react";
 import { Player } from "../../Home";
 
 interface HighestLeapProps {
   players?: Player[];
 }
 
-const HighestLeap: React.FC<HighestLeapProps> = ({ players = [] }) => {
+const HighestLeap = ({ players = [] }: HighestLeapProps) => {
   if (players.length === 0) {
     return <div className="player-card">No player data available</div>;
   }
