@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Col, Row, Table, Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Button, Col, Row, Input } from "antd";
+// import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import LeagueTrends from "./home-components/league-trends/LeagueTrends";
 import PlayerOfTheWeek from "./home-components/player-of-the-week/PlayerOfTheWeek";
 import HighestLeap from "./home-components/highest-leap/HighestLeap";
 import BiggestDrop from "./home-components/biggest-drop/BiggestDrop";
 import FPLBarChart from "./home-components/bar-chart/BarChart";
+import LeagueTable from "./home-components/league-table/LeagueTable";
 
 export interface Player {
   id: string;
@@ -38,7 +39,7 @@ const Home: React.FC = () => {
   const [leagueTitle, setLeagueTitle] = useState<string>("");
   const [inputLeagueId, setInputLeagueId] = useState<string>("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const fetchLeagueData = async () => {
     if (!inputLeagueId) return;
@@ -64,51 +65,6 @@ const Home: React.FC = () => {
     players[0]
   );
 
-  const columns = [
-    {
-      title: "Rank",
-      dataIndex: "rank",
-      key: "rank",
-      render: (rank: number, player: Player) => (
-        <span>
-          {rank}
-          {player.last_rank !== rank && (
-            <span
-              style={{
-                marginLeft: "5px",
-                color: rank < player.last_rank ? "#4CAF50" : "#E57373",
-              }}
-            >
-              {rank < player.last_rank ? "▲" : "▼"}
-            </span>
-          )}
-        </span>
-      ),
-    },
-    {
-      title: "Team & Manager",
-      dataIndex: "entry_name",
-      key: "entry_name",
-      render: (_: string, player: Player) => (
-        <div>
-          <strong>{player.entry_name}</strong>
-          <br />
-          <span className="player-name">{player.player_name}</span>
-        </div>
-      ),
-    },
-    {
-      title: "GW Points",
-      dataIndex: "event_total",
-      key: "event_total",
-    },
-    {
-      title: "Total Points",
-      dataIndex: "total",
-      key: "total",
-    },
-  ];
-
   return (
     <div className="home-container">
       <Row gutter={16}>
@@ -125,7 +81,6 @@ const Home: React.FC = () => {
             <Button
               type="primary"
               onClick={fetchLeagueData}
-onchange={fetchLeagueData}
               disabled={!inputLeagueId}
             >
               Fetch League
@@ -138,29 +93,7 @@ onchange={fetchLeagueData}
         <div className="home-content">
           <Row gutter={40}>
             <Col span={12}>
-              <div className="league-table">
-                <h1 className="league-title">{leagueTitle}</h1>
-                <Table
-                  dataSource={players.slice(0, 10)}
-                  columns={columns}
-                  pagination={false}
-                  rowKey="id"
-                  rowClassName={(_, index) =>
-                    index % 2 === 0 ? "table-row-even" : "table-row-odd"
-                  }
-                />
-
-                <Button
-                  type="primary"
-                  className="see-full-table-btn"
-                  onClick={() =>
-                    navigate("/leaderboard", { state: { players } })
-                  }
-                  disabled={players.length === 0}
-                >
-                  See Full Table
-                </Button>
-              </div>
+              <LeagueTable players={players} leagueTitle={leagueTitle} />
             </Col>
 
             <Col span={12}>
