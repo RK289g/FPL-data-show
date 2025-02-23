@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Button, Col, Row, Input } from "antd";
 // import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ interface StandingsResponse {
   };
 }
 
-const Home: React.FC = () => {
+const Home = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [leagueTitle, setLeagueTitle] = useState<string>("");

@@ -1,5 +1,3 @@
-// LeagueTable.tsx
-import React from "react";
 import { Table, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Player } from "../../Home";
@@ -9,7 +7,7 @@ interface LeagueTableProps {
   leagueTitle: string;
 }
 
-const LeagueTable: React.FC<LeagueTableProps> = ({ players, leagueTitle }) => {
+const LeagueTable = ({ players, leagueTitle }: LeagueTableProps) => {
   const navigate = useNavigate();
 
   const columns = [
