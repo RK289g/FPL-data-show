@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { Table } from "antd";
 import "./Leaderboard.css";
@@ -16,7 +15,7 @@ interface Player {
   photo?: string;
 }
 
-const Leaderboard: React.FC = () => {
+const Leaderboard = () => {
   const location = useLocation();
   const players: Player[] = location.state?.players || [];
 

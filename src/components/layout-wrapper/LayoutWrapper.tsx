@@ -14,6 +14,7 @@ const LayoutWrapper = () => {
   const items = [
     getItem(<Link to="/">Home</Link>, ""),
     // getItem(<Link to="/leaderboard">Leaderboard</Link>, "leaderboard"),
+    getItem(<Link to="/team-page">Your Team</Link>, "team-page"),
     getItem(<Link to="/contact-us">Contact Us</Link>, "contact-us"),
   ];
   return (
@@ -32,7 +33,7 @@ const LayoutWrapper = () => {
             mode="horizontal"
             defaultSelectedKeys={["2"]}
             items={items}
-            style={{ flex: 1, minWidth: 0 }}
+            // style={{ flex: 1, minWidth: 0 }}
           />
         </Flex>
       </Header>
