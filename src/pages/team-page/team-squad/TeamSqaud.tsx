@@ -11,7 +11,8 @@ export interface PlayerPick {
 export interface PlayerData {
   id: number;
   web_name: string;
-  points: number;
+  event_points: number;
+  total_points: number;
 }
 
 interface TeamSquadProps {
@@ -100,7 +101,7 @@ const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
         )}
         <br />
         <Typography.Text strong>
-          Points: {playerData?.points || 0}
+          Points: {playerData?.event_points || 0}
         </Typography.Text>
       </Card>
     );
