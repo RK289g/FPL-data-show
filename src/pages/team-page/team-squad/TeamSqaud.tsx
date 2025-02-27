@@ -2,27 +2,8 @@ import { Card, Col, Row, Spin, Typography } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PlayerCard from "../player-card/PlayerCard";
-
-export interface PlayerPick {
-  element: number;
-  position: number;
-  multiplier: number;
-}
-
-export interface PlayerData {
-  id: number;
-  web_name: string;
-  event_points: number;
-  total_points: number;
-  code: number;
-}
-
-export interface TeamData {
-  name: string;
-  player_first_name: string;
-  player_last_name: string;
-  summary_overall_points: number;
-}
+import "./TeamSquad.css";
+import { PlayerData, PlayerPick, TeamData } from "../../../models/team";
 
 interface TeamSquadProps {
   teamId: string;
@@ -60,7 +41,6 @@ const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
         const playerMap: { [key: number]: PlayerData } = {};
         allPlayers.forEach((p) => (playerMap[p.id] = p));
 
-        // Fetch team data
         const teamResponse = await axios.get(
           `http://localhost:3000/user/${teamId}`
         );
@@ -86,43 +66,46 @@ const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
   const bench = squad.filter((p) => players[p.element] && p.position > 11);
 
   return (
-    <div style={{ textAlign: "center", backgroundColor: "green" }}>
+    <div className="team-squad-container">
       {/* Team Info Card */}
       {teamData && (
-        <Card title={`Team: ${teamData.name}`} style={{ marginBottom: 20 }}>
+        <Card title={`Team: ${teamData.name}`} className="team-card">
           <Typography.Text>
             <strong>Manager:</strong> {teamData.player_first_name}{" "}
             {teamData.player_last_name}
           </Typography.Text>
           <br />
           <Typography.Text>
-            <strong>Overall Points:</strong> {teamData.summary_overall_points}
+            <strong>Overall Points:</strong> {teamData.summary_event_points}
           </Typography.Text>
         </Card>
       )}
 
-      <Typography.Title level={3}>My FPL Team</Typography.Title>
+      <Typography.Title level={3} className="team-title">
+        My FPL Team
+      </Typography.Title>
 
-      {Object.entries(formation).map(([key, positions]) => (
-        <Row
-          key={key}
-          justify="center"
-          gutter={[2, 2]}
-          // style={{ marginBottom: 10 }}
-        >
-          {positions.map((pos) => {
-            const player = startingXI.find((p) => p.position === pos);
-            return player ? (
-              <PlayerCard
-                player={player}
-                playerData={players[player.element]}
-              />
-            ) : null;
-          })}
-        </Row>
-      ))}
+      {/* Football Pitch Background */}
+      <div className="football-pitch">
+        {Object.entries(formation).map(([key, positions]) => (
+          <Row key={key} className="formation-row">
+            {positions.map((pos) => {
+              const player = startingXI.find((p) => p.position === pos);
+              return player ? (
+                <div key={player.element} className="player-position">
+                  <PlayerCard
+                    player={player}
+                    playerData={players[player.element]}
+                  />
+                </div>
+              ) : null;
+            })}
+          </Row>
+        ))}
+      </div>
 
-      <Typography.Title level={4} style={{ marginTop: 20 }}>
+      {/* Bench Players */}
+      <Typography.Title level={4} className="bench-title">
         Bench
       </Typography.Title>
       <Row justify="center" gutter={[8, 8]}>

@@ -1,5 +1,5 @@
-import { Card, Typography } from "antd";
-import { PlayerData, PlayerPick } from "../team-squad/TeamSqaud";
+import { Typography } from "antd";
+import { PlayerData, PlayerPick } from "../../../models/team";
 
 interface PlayerCardProps {
   player: PlayerPick;

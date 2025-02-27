@@ -2,16 +2,7 @@ import { Button, Col, Input, Row, Spin } from "antd";
 import { useState } from "react";
 import axios from "axios";
 import TeamSquad from "./team-squad/TeamSqaud";
-
-export interface Player {
-  id: number;
-  player_first_name: string;
-  player_last_name: string;
-  summary_overall_points: number;
-  summary_overall_rank: number;
-  name: string;
-  current_event: number;
-}
+import { Player } from "../../models/team";
 
 const TeamPage = () => {
   const [teamData, setTeamData] = useState<Player | null>(null);

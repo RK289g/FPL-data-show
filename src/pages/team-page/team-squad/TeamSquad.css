@@ -1,0 +1,74 @@
+/* TeamSquad.css */
+
+.team-squad-container {
+  text-align: center;
+  background-color: #0b3d91;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.team-card {
+  /* margin-bottom: 20px; */
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid #fff;
+}
+
+.team-card .ant-card-head-title {
+  color: white !important;
+}
+
+.team-title {
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Football Pitch */
+.football-pitch {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  height: 500px;
+  background-image: url("https://www.dreamstime.com/stock-photos-football-field-top-view-standard-markings-image22853433"); /* Replace with an actual football pitch image */
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Player Rows */
+.formation-row {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Adjust player positions dynamically */
+.formation-row:nth-child(1) {
+  top: 0%;
+}
+.formation-row:nth-child(2) {
+  top: 30%;
+}
+.formation-row:nth-child(3) {
+  top: 60%;
+}
+.formation-row:nth-child(4) {
+  top: 90%;
+}
+
+.player-position {
+  margin: 5px;
+}
+
+/* Bench Styling */
+.bench-title {
+  margin-top: 20px;
+  color: white;
+}
