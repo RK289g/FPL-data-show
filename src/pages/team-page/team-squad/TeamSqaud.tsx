@@ -1,4 +1,4 @@
-import { Col, Row, Spin, Typography } from "antd";
+import { Card, Col, Row, Spin, Typography } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PlayerCard from "../player-card/PlayerCard";
@@ -17,6 +17,13 @@ export interface PlayerData {
   code: number;
 }
 
+export interface TeamData {
+  name: string;
+  player_first_name: string;
+  player_last_name: string;
+  summary_overall_points: number;
+}
+
 interface TeamSquadProps {
   teamId: string;
   eventId: number;
@@ -32,6 +39,7 @@ const formation = {
 const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
   const [squad, setSquad] = useState<PlayerPick[]>([]);
   const [players, setPlayers] = useState<{ [key: number]: PlayerData }>({});
+  const [teamData, setTeamData] = useState<TeamData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -51,6 +59,12 @@ const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
 
         const playerMap: { [key: number]: PlayerData } = {};
         allPlayers.forEach((p) => (playerMap[p.id] = p));
+
+        // Fetch team data
+        const teamResponse = await axios.get(
+          `http://localhost:3000/user/${teamId}`
+        );
+        setTeamData(teamResponse.data);
 
         setSquad(picks);
         setPlayers(playerMap);
@@ -73,14 +87,28 @@ const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
 
   return (
     <div style={{ textAlign: "center", backgroundColor: "green" }}>
+      {/* Team Info Card */}
+      {teamData && (
+        <Card title={`Team: ${teamData.name}`} style={{ marginBottom: 20 }}>
+          <Typography.Text>
+            <strong>Manager:</strong> {teamData.player_first_name}{" "}
+            {teamData.player_last_name}
+          </Typography.Text>
+          <br />
+          <Typography.Text>
+            <strong>Overall Points:</strong> {teamData.summary_overall_points}
+          </Typography.Text>
+        </Card>
+      )}
+
       <Typography.Title level={3}>My FPL Team</Typography.Title>
 
       {Object.entries(formation).map(([key, positions]) => (
         <Row
           key={key}
           justify="center"
-          gutter={[8, 8]}
-          style={{ marginBottom: 10 }}
+          gutter={[2, 2]}
+          // style={{ marginBottom: 10 }}
         >
           {positions.map((pos) => {
             const player = startingXI.find((p) => p.position === pos);
@@ -99,7 +127,7 @@ const TeamSquad = ({ teamId, eventId }: TeamSquadProps) => {
       </Typography.Title>
       <Row justify="center" gutter={[8, 8]}>
         {bench.map((p) => (
-          <Col key={p.element} span={6}>
+          <Col key={p.element} span={4}>
             <PlayerCard player={p} playerData={players[p.element]} />
           </Col>
         ))}

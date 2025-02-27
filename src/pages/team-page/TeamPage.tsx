@@ -1,4 +1,4 @@
-import { Button, Col, Input, Row, Card, Spin, Typography } from "antd";
+import { Button, Col, Input, Row, Spin } from "antd";
 import { useState } from "react";
 import axios from "axios";
 import TeamSquad from "./team-squad/TeamSqaud";
@@ -38,7 +38,7 @@ const TeamPage = () => {
   console.log("Latest Event:", teamData?.current_event);
 
   return (
-    <div className="home-container">
+    <div>
       <Row gutter={16}>
         <Col>
           <div className="search-box">
@@ -61,24 +61,17 @@ const TeamPage = () => {
         </Col>
       </Row>
 
-      {loading && <Spin size="large" style={{ marginTop: 20 }} />}
-
-      {teamData && (
-        <Card title={`Team: ${teamData.name}`} style={{ marginTop: 20 }}>
-          <Typography.Text>
-            <strong>Manager:</strong> {teamData.player_first_name}{" "}
-            {teamData.player_last_name}
-          </Typography.Text>
-          <br />
-          <Typography.Text>
-            <strong>Overall Points:</strong> {teamData.summary_overall_points}
-          </Typography.Text>
-        </Card>
-      )}
-
-      {teamData && (
-        <TeamSquad teamId={inputTeamId} eventId={teamData?.current_event} />
-      )}
+      <Row gutter={16}>
+        <Col span={12}>
+          {loading ? (
+            <Spin size="large" />
+          ) : teamData ? (
+            <TeamSquad teamId={inputTeamId} eventId={teamData.current_event} />
+          ) : (
+            <p>No data found for the team</p>
+          )}
+        </Col>
+      </Row>
     </div>
   );
 };

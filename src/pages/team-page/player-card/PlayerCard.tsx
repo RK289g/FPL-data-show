@@ -8,7 +8,14 @@ interface PlayerCardProps {
 
 const PlayerCard = ({ player, playerData }: PlayerCardProps) => {
   return (
-    <Card key={player.element} style={{ backgroundColor: "transparent" }}>
+    <div
+      key={player.element}
+      style={{
+        backgroundColor: "transparent",
+        border: "none",
+        padding: "15px",
+      }}
+    >
       <div
         style={{
           display: "flex",
@@ -19,7 +26,7 @@ const PlayerCard = ({ player, playerData }: PlayerCardProps) => {
         <img
           src={`https://resources.premierleague.com/premierleague/photos/players/110x140/p${playerData?.code}.png`}
           alt={playerData?.web_name}
-          style={{ width: "70px", height: "auto", borderRadius: "8px" }}
+          style={{ width: "70px", height: "100px", borderRadius: "8px" }}
         />
 
         <Typography.Text>{playerData?.web_name || "Unknown"}</Typography.Text>
@@ -27,7 +34,7 @@ const PlayerCard = ({ player, playerData }: PlayerCardProps) => {
           Points: {playerData?.event_points || 0}
         </Typography.Text>
       </div>
-    </Card>
+    </div>
   );
 };
 
