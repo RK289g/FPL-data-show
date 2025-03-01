@@ -51,16 +51,19 @@
 
 /* Adjust player positions dynamically */
 .formation-row:nth-child(1) {
-  top: 0%;
+  top: -10%;
 }
 .formation-row:nth-child(2) {
-  top: 30%;
+  top: 20%;
 }
 .formation-row:nth-child(3) {
-  top: 60%;
+  top: 40%;
 }
 .formation-row:nth-child(4) {
-  top: 90%;
+  top: 70%;
+}
+.formation-row:nth-child(5) {
+  top: 100%;
 }
 
 .player-position {

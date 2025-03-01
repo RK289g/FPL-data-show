@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import TeamSquad from "./team-squad/TeamSqaud";
 import { Player } from "../../models/team";
+import "./TeamPage.css";
 
 const TeamPage = () => {
   const [teamData, setTeamData] = useState<Player | null>(null);
@@ -29,7 +30,7 @@ const TeamPage = () => {
   console.log("Latest Event:", teamData?.current_event);
 
   return (
-    <div>
+    <div className="team-page-container">
       <Row gutter={16}>
         <Col>
           <div className="search-box">
@@ -53,7 +54,7 @@ const TeamPage = () => {
       </Row>
 
       <Row gutter={16}>
-        <Col span={12}>
+        <Col span={10}>
           {loading ? (
             <Spin size="large" />
           ) : teamData ? (
