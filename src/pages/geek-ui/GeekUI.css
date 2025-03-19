@@ -24,6 +24,13 @@
     }
   }
 
+  .start-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    padding: 20px;
+  }
   .ques-time-wrapper {
     display: flex;
     flex-direction: column;
@@ -139,6 +146,13 @@
           }
         }
       }
+    }
+
+    .submit-button-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
   }
 }
