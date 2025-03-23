@@ -16,7 +16,7 @@ const LayoutWrapper = () => {
     // getItem(<Link to="/leaderboard">Leaderboard</Link>, "leaderboard"),
     getItem(<Link to="/team-page">Your Team</Link>, "team-page"),
     getItem(<Link to="/contact-us">Contact Us</Link>, "contact-us"),
-    getItem(<Link to="/geek-ui">Geek UI</Link>, "geek-ui"),
+    getItem(<Link to="/quiz-ui">Quiz UI</Link>, "quiz-ui"),
   ];
   return (
     <Layout>
