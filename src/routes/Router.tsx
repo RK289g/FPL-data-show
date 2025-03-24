@@ -3,7 +3,7 @@ import LayoutWrapper from "../components/layout-wrapper/LayoutWrapper";
 import Home from "../pages/home/Home";
 import Leaderboard from "../pages/leaderboard/Leaderboard";
 import TeamPage from "../pages/team-page/TeamPage";
-import QuizUI from "../pages/quiz-ui/QuizUI";
+import QuizUI from "../pages/quiz-ui/JoinCommunity";
 
 const AppRouter = () => {
   return (
